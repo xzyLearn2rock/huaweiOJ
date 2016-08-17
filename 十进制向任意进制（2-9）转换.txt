@@ -1,0 +1,42 @@
+//进制转换
+//描述:
+//编写程序，将任意十进制正整数转换为N进制数。
+//待转换的原始数字为十进制正整数，N为进制数，取值2-9中的整数；
+//转换后结果可以使用int类型承载，考生不必考虑溢出问题。
+
+//运行时间限制:无限制
+//内存限制:无限制
+//输入:
+//输入格式：“待转换原始数字,N进制”，两个数字之间以逗号(“,”)分隔。
+//待转换的原始数字为十进制正整数，N为进制数，取值2-9中的整数；
+
+//输出:
+//转换后的N进制数
+//样例输入:
+//291,2
+//样例输出:
+//100100011
+
+
+#include <iostream>
+using namespace std;
+
+void convert(int data,int N,int& result)
+{
+	if (data == 0 || N < 2 || N > 9)
+		return ;
+
+	convert(data / N,N,result);
+	result = result * 10 + data % N;
+}
+
+int main()
+{
+	int data = 0;
+	int N = 0;
+	cin >> data >> N;
+	int result = 0;
+	convert(data,N,result);
+	cout << result << endl;
+	return 0;
+}
